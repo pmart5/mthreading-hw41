@@ -20,8 +20,8 @@ ConcurrentLinkedQueue и LinkedBlockingQueue. Так как поступающи
 
 public class Main {
 
-    public static final int NUMBER_OF_TREADS = 11;
-    public static final int DELAY_TIME_BEFORE_SHUTDOWN_ATS = 7000;
+    public static final int NUMBER_OF_TREADS = 31;
+    public static final int DELAY_TIME_BEFORE_SHUTDOWN_ATS = 5000;
 
     public static void main(String[] args) {
         ThreadGroup handlerGroup = new ThreadGroup("Группа специалистов");

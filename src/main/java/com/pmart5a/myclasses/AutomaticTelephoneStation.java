@@ -6,7 +6,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class AutomaticTelephoneStation {
 
-    private static final int CALL_RECEIPT_INTERVAL = 50;
+    private static final int CALLS_RECEIPT_INTERVAL = 1000;
+    private static final int NUMBER_OF_CALLS = 60;
     private static final long minPhoneNumber = 8100000001L;
     private static final long maxPhoneNumber = 8999999999L;
     private static final ConcurrentLinkedQueue<PhoneCall> queueOfPhoneCalls = new ConcurrentLinkedQueue<>();
@@ -30,9 +31,12 @@ public class AutomaticTelephoneStation {
         try {
             enableGenerationCall();
             while (generation) {
+                for (int i = 0; i < NUMBER_OF_CALLS; i++) {
                     addCallInQueue();
-                System.out.printf("Поток %s: входящий звонок.\n", Thread.currentThread().getName());
-                Thread.sleep(CALL_RECEIPT_INTERVAL);
+                }
+                System.out.printf("Поток %s: сгенерировано %d входящих звонков.\n", Thread.currentThread().getName(),
+                        NUMBER_OF_CALLS);
+                Thread.sleep(CALLS_RECEIPT_INTERVAL);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
