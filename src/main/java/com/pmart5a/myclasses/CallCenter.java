@@ -19,8 +19,9 @@ public class CallCenter {
 
     public void processIncomingCall() {
         try {
+
             while (true) {
-                PhoneCall phoneCall = ats.getCallFromQueue();
+                    PhoneCall phoneCall = ats.getCallFromQueue();
                 if (phoneCall != null) {
                     System.out.printf("Поток %s: обрабатываю %s.\n", Thread.currentThread().getName(), phoneCall);
                     Thread.sleep(CALL_PROCESSING_TIME);
@@ -29,7 +30,7 @@ public class CallCenter {
                     processedPhoneCalls.add(phoneCall);
                     System.out.printf("Поток %s: %s обработан.\n", Thread.currentThread().getName(), phoneCall);
                 }
-                if (ats.isEmptyCallInQueue() && !ats.getGenerationCall()) {
+                if (ats.isEmptyCallInQueue() && !ats.isGenerationCallEnable()) {
                     System.out.printf("Поток %s: очередь звонков пуста. Завершаю работу.\n",
                             Thread.currentThread().getName());
                     return;

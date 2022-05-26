@@ -52,7 +52,7 @@ public class AutomaticTelephoneStation {
         generation = false;
     }
 
-    public boolean getGenerationCall() {
+    public boolean isGenerationCallEnable() {
         return generation;
     }
 
