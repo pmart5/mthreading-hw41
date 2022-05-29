@@ -12,6 +12,7 @@ public class AutomaticTelephoneStation {
     private static final long maxPhoneNumber = 8999999999L;
     private static final ConcurrentLinkedQueue<PhoneCall> queueOfPhoneCalls = new ConcurrentLinkedQueue<>();
     private volatile boolean generation;
+    private volatile int numberOfCallsForAllTime = 0;
 
     public AutomaticTelephoneStation() {}
 
@@ -36,6 +37,7 @@ public class AutomaticTelephoneStation {
                 }
                 System.out.printf("Поток %s: сгенерировано %d входящих звонков.\n", Thread.currentThread().getName(),
                         NUMBER_OF_CALLS);
+                numberOfCallsForAllTime += NUMBER_OF_CALLS;
                 Thread.sleep(CALLS_RECEIPT_INTERVAL);
             }
         } catch (InterruptedException e) {
@@ -54,6 +56,10 @@ public class AutomaticTelephoneStation {
 
     public boolean isGenerationCallEnable() {
         return generation;
+    }
+
+    public int getNumberOfCallsForAllTime() {
+        return numberOfCallsForAllTime;
     }
 
     public PhoneCall createPhoneCall() {
